@@ -30,6 +30,7 @@ AddEventHandler("checkFarmTime", function(finaltime, farmItems)
 
     -- if elapsedTime >= 1800000 then -- 30 minutos passaram? (1800000 ms = 30 min)
     if elapsedTime >= 60 then -- 30 minutos passaram? (1800000 ms = 30 min)
+        START_TIME = finaltime
         for _, itemData in ipairs(farmItems) do
             print("[FARM] Player " .. source .. " recebeu " .. itemData.item)
             -- Aqui você pode adicionar a lógica para dar os itens ao jogador:
