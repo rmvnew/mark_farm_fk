@@ -90,15 +90,16 @@ end)
 RegisterNUICallback("startFarm", function(data, cb)
 
     if data then
-        TriggerServerEvent("startFarm", data, farmItems) 
+        TriggerServerEvent("startFarm", data) 
     end
     cb("ok")
 end)
 
 -- Quando o tempo do farm acabar, validar no servidor antes de entregar itens
 RegisterNUICallback("checkFarmTime", function(data, cb)
-    if startTime then
-        TriggerServerEvent("checkFarmTime", startTime, farmItems)
+
+    if data then
+        TriggerServerEvent("checkFarmTime", data, farmItems)
     end
     cb("ok")
 end)

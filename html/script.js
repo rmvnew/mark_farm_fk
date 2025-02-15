@@ -36,10 +36,7 @@ function formatTime(totalSeconds) {
     return minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
 }
 
-// Função que é chamada quando o timer chega a zero
-function onTimerEnd() {
-    console.log("Tempo zerado!");
-}
+
 
 // Função para iniciar o timer
 function startTimer() {
@@ -70,6 +67,17 @@ function timeStarted(){
    const timestamp = Math.floor(Date.now() / 1000);
 
    sendDataToClient("startFarm",timestamp)
+   
+   
+}
+
+// Função que é chamada quando o timer chega a zero
+function onTimerEnd() {
+    
+    const timestamp = Math.floor(Date.now() / 1000);
+    
+    sendDataToClient("checkFarmTime",timestamp)
+    
 
 }
 
