@@ -1,5 +1,5 @@
 // Configuração do tempo inicial em minutos (modifique conforme necessário)
-let initialTimeInMinutes = 30;
+let initialTimeInMinutes = 1;
 let totalTimeInSeconds = initialTimeInMinutes * 60;
 let timerInterval = null;
 
@@ -15,7 +15,6 @@ window.addEventListener('message', function (event) {
 $(document).keyup((event) => {
     if (event.key === 'Escape') {
         sendDataToClient('closeCurrentNUI', null);
-        resetTimer(); // Reseta o tempo ao fechar a NUI
     }
 });
 
@@ -44,6 +43,7 @@ function onTimerEnd() {
 
 // Função para iniciar o timer
 function startTimer() {
+    timeStarted()
     const display = document.getElementById('timerDisplay');
 
     // Atualiza o display imediatamente
@@ -62,6 +62,15 @@ function startTimer() {
             display.value = formatTime(totalTimeInSeconds);
         }
     }, 1000);
+}
+
+
+function timeStarted(){
+
+   const timestamp = Math.floor(Date.now() / 1000);
+
+   sendDataToClient("startFarm",timestamp)
+
 }
 
 // Função para resetar o timer ao fechar a NUI

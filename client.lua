@@ -1,4 +1,6 @@
 local display = false
+local startTime = nil -- Guarda o tempo inicial do farm em milissegundos
+local farmItems = {} -- Guarda os itens que serão farmados
 
 -- Função para desenhar texto 3D
 function DrawText3D(x, y, z, text)
@@ -19,7 +21,7 @@ function DrawText3D(x, y, z, text)
     end
 end
 
--- Criar blips e markers
+-- Criar blips e markers para as facções
 Citizen.CreateThread(function()
     for category, data in pairs(Config.data.orgType) do
         for _, org in pairs(data.orgs) do
@@ -27,7 +29,7 @@ Citizen.CreateThread(function()
 
             -- Criar Blip
             local blip = AddBlipForCoord(x, y, z)
-            SetBlipSprite(blip, 84) -- Ícone do blip (pode mudar)
+            SetBlipSprite(blip, 84)
             SetBlipDisplay(blip, 4)
             SetBlipScale(blip, 0.8)
             SetBlipColour(blip, 1)
@@ -51,16 +53,15 @@ Citizen.CreateThread(function()
                 local x, y, z = table.unpack(org.coords)
                 local distance = #(playerCoords - vector3(x, y, z))
 
-                if distance < 5 then
+                if distance < 10 then
                     sleep = 0
-                    -- DrawMarker(27, x, y, z - 0.9, 0, 0, 0, 0, 0, 0, 0.7, 0.7, 0.7, 255, 0, 0, 200, false, false, 2, false, nil, nil, false)
-                    DrawMarker(27, x, y, z - 0.95,  0, 0, 0, 0, 0, 130.0, 1.0, 1.0, 1.0, 255, 0, 0, 255, 0, 0, 0, 1)
+                    DrawMarker(27, x, y, z - 0.9, 0, 0, 0, 0, 0, 0, 0.7, 0.7, 0.7, 255, 0, 0, 200, false, false, 2, false, nil, nil, false)
                     DrawText3D(x, y, z, "[E] - Farm FK")
 
-                    if distance < 1.5 then
-                        if IsControlJustPressed(0, 38) then -- Pressionou "E"
-                            SetDisplay(true) -- Abrir NUI
-                        end
+                    if distance < 4 and IsControlJustPressed(0, 38) then -- Pressionou "E"
+                        startTime = GetGameTimer() -- Usa GetGameTimer() para armazenar o tempo
+                        farmItems = data.itensFarm -- Define os itens do farm conforme a facção
+                        SetDisplay(true) -- Abrir NUI
                     end
                 end
             end
@@ -69,7 +70,7 @@ Citizen.CreateThread(function()
     end
 end)
 
--- Função para mostrar a NUI
+-- Mostrar ou esconder a NUI
 function SetDisplay(bool)
     display = bool
     SetNuiFocus(bool, bool)
@@ -78,7 +79,26 @@ function SetDisplay(bool)
     })
 end
 
--- Fechar a NUI com ESC
-RegisterNUICallback("closeCurrentNUI", function()
+-- Fechar NUI e resetar tempo
+RegisterNUICallback("closeCurrentNUI", function(data, cb)
     SetDisplay(false)
+    startTime = nil -- Reseta o tempo do farm
+    cb("ok")
+end)
+
+
+RegisterNUICallback("startFarm", function(data, cb)
+
+    if data then
+        TriggerServerEvent("startFarm", data, farmItems) 
+    end
+    cb("ok")
+end)
+
+-- Quando o tempo do farm acabar, validar no servidor antes de entregar itens
+RegisterNUICallback("checkFarmTime", function(data, cb)
+    if startTime then
+        TriggerServerEvent("checkFarmTime", startTime, farmItems)
+    end
+    cb("ok")
 end)
