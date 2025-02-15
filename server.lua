@@ -5,6 +5,7 @@ vRP = Proxy.getInterface("vRP")
 vRPclient = Tunnel.getInterface("vRP")
 
 START_TIME = nil
+local farmPlayers = {} -- Armazena quem está farmando
 
 
 RegisterNetEvent("startFarm")
@@ -79,4 +80,21 @@ AddEventHandler("checkFarmTime", function(finaltime, farmItems)
     else
         print("[FARM] Player " .. source .. " tentou pegar os itens antes do tempo.")
     end
+end)
+
+
+
+
+RegisterNetEvent("mark_fk:updateFarmStatus")
+AddEventHandler("mark_fk:updateFarmStatus", function(status)
+    local user_id = vRP.getUserId(source)
+    if user_id then
+        farmPlayers[user_id] = status
+    end
+end)
+
+-- Exporta a função para verificar se o jogador está farmando
+exports("farmStatus", function(source)
+    local user_id = vRP.getUserId(source)
+    return farmPlayers[user_id] or false
 end)

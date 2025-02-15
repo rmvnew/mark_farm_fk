@@ -14,47 +14,47 @@ Config.data = {
             orgs = {
                 {
                     name = 'Mafia',
-                    coords = {  412.33,  7.76,  84.92},
+                    coords = {399.51,-22.35,84.92},
                     permission = 'perm.mafia',
                 },
                 {
                     name = 'Cartel',
-                    coords = {  1399.98,  1139.68,  114.33},
+                    coords = {1398.2,1156.59,106.86},
                     permission = 'perm.cartel',
                 },
                 {
                     name = 'Croacia',
-                    coords = {  -1513.49,  844.86,  181.59},
+                    coords = {-1507.14,838.7,181.59},
                     permission = 'perm.croacia',
                 },
                 {
                     name = 'Yakuza',
-                    coords = {  -882.05,  -1451.41,  5.43},
+                    coords = {-897.53,-1456.89,9.84},
                     permission = 'perm.yakuza',
                 },
                 {
                     name = 'Triade',
-                    coords = {  -1890.85,  2058.35,  140.98},
+                    coords = {-1879.96,2066.58,145.57},
                     permission = 'perm.triade',
                 },
                 {
                     name = 'Merlim',
-                    coords = {  -859.56,  2642.75,  58.3},
+                    coords = {-883.68,2632.73,58.23},
                     permission = 'perm.merlim',
                 },
                 {
                     name = 'BlackOut',
-                    coords = {  2031.37,  24.84,  203.44},
+                    coords = {2024.14,7.52,203.28},
                     permission = 'perm.blackOut',
                 },
                 {
                     name = 'Wolves',
-                    coords = {  766.03,  -250.25,  69.83},
+                    coords = {810.57,-247.79,66.47},
                     permission = 'perm.wolves',
                 },
                 {
                     name = 'Franca',
-                    coords = {  -2425.54,  1787.31,  187.23},
+                    coords = {-2420.05,1820.68,207.32},
                     permission = 'perm.franca',
                 },
             }
@@ -68,37 +68,37 @@ Config.data = {
             orgs = {
                 {
                     name = 'Grota',
-                    coords = {  1313.98,  -177.81,  108.45},
+                    coords = {1323.14,-228.63,129.25},
                     permission = 'perm.grota',
                 },
                 {
                     name = 'Milicia',
-                    coords = {  1073.57,  999.3,  250.42},
+                    coords = {1056.91,1018.55,250.67},
                     permission = 'perm.milicia',
                 },
                 {
                     name = 'Alemao',
-                    coords = {  388.04,  792.39,  190.4},
+                    coords = {412.45,780.69,191.4},
                     permission = 'perm.alemao',
                 },
                 {
                     name = 'Helipa',
-                    coords = {  1447.64,  1859.03,  111.82},
+                    coords = {1420.0,1862.83,111.7},
                     permission = 'perm.helipa',
                 },
                 {
                     name = 'Crips',
-                    coords = {  1380.59,  -2343.32,  62.01},
+                    coords = {1367.36,-2334.97,61.81},
                     permission = 'perm.crips',
                 },
                 {
                     name = 'Canada',
-                    coords = {  -144.81,  -1599.9,  35.06},
+                    coords = {-157.23,-1603.47,35.03},
                     permission = 'perm.canada',
                 },
                 {
                     name = 'Turquia',
-                    coords = {  1361.66,  -753.37,  67.33},
+                    coords = {1369.02,-700.24,71.9},
                     permission = 'perm.turquia',
                 },
             }
@@ -112,17 +112,17 @@ Config.data = {
             orgs = {
                 {
                     name = 'MotoClub',
-                    coords = {  998.6,  -123.9,  74.05},
+                    coords = {985.32,-129.24,78.89},
                     permission = 'perm.motoClub',
                 },
                 {
                     name = 'Furious',
-                    coords = {  -345.45,  -130.93,  39.01},
+                    coords = {-331.95,-126.59,39.01},
                     permission = 'perm.furious',
                 },
                 {
                     name = 'Lacoste',
-                    coords = {  -205.55,  -1333.16,  30.89},
+                    coords = {-196.18,-1341.57,34.91},
                     permission = 'perm.lacoste',
                 },
             }
@@ -136,7 +136,7 @@ Config.data = {
             orgs = {
                 {
                     name = 'ThunderCustom',
-                    coords = {  936.9,  -1048.93,  40.84},
+                    coords = {955.88,-1052.16,40.84},
                     permission = 'perm.mecanica',
                 },
                 
@@ -150,7 +150,7 @@ Config.data = {
             orgs = {
                 {
                     name = 'Hospital',
-                    coords = {  -434.53,  -314.24,  34.91},
+                    coords = {-454.27,-322.57,34.91},
                     permission = 'perm.unizk',
                 },
                 
@@ -164,7 +164,7 @@ Config.data = {
             orgs = {
                 {
                     name = 'Portugal',
-                    coords = {  1870.92,  6406.34,  47.31},
+                    coords = {1827.82,6443.19,50.95},
                     permission = 'perm.portugal',
                 },
                 
@@ -178,7 +178,7 @@ Config.data = {
             orgs = {
                 {
                     name = 'Argentina',
-                    coords = {  341.57,  -2024.21,  22.39},
+                    coords = {349.82,-2029.96,22.39},
                     permission = 'perm.argentina',
                 },
                 
@@ -192,7 +192,7 @@ Config.data = {
             orgs = {
                 {
                     name = 'Brasil',
-                    coords = {  -1633.66,  4750.57,  53.68},
+                    coords = {-1585.64,4735.42,50.99},
                     permission = 'perm.brasil',
                 },
                 
@@ -208,7 +208,7 @@ Config.data = {
             orgs = {
                 {
                     name = 'Cv',
-                    coords = {  3313.13,  5135.93,  19.34},
+                    coords = {3317.52,5157.78,18.59},
                     permission = 'perm.cv',
                 },
                 {
@@ -218,17 +218,17 @@ Config.data = {
                 },
                 {
                     name = 'Mexico',
-                    coords = {  2290.49,  2280.43,  72.12},
+                    coords = {2290.03,2232.93,77.49},
                     permission = 'perm.mexico',
                 },
                 {
                     name = 'Jamaica',
-                    coords = {  -516.61,  2998.62,  27.53},
+                    coords = {-510.89,2979.9,26.96},
                     permission = 'perm.Jamaica',
                 },
                 {
                     name = 'Australia',
-                    coords = {  847.65,  2846.93,  60.04},
+                    coords = {838.74,2865.78,60.15},
                     permission = 'perm.australia',
                 },
                 
@@ -243,7 +243,7 @@ Config.data = {
             orgs = {
                 {
                     name = 'Tequila',
-                    coords = {  -567.34,  309.1,  84.55},
+                    coords = {-553.1,286.12,82.18},
                     permission = 'perm.tequila',
                 },
                 {
@@ -253,17 +253,17 @@ Config.data = {
                 },
                 {
                     name = 'Iluminatis',
-                    coords = {  -3015.67,  55.82,  11.95},
+                    coords = {-2998.89,66.88,11.51},
                     permission = 'perm.iluminatis',
                 },
                 {
                     name = 'Cassino',
-                    coords = {  965.27,  54.47,  74.98},
+                    coords = {983.69,42.84,75.99},
                     permission = 'perm.cassino',
                 },
                 {
                     name = 'Luxury',
-                    coords = {  -288.01,  232.13,  78.82},
+                    coords = {-323.38,234.72,78.82},
                     permission = 'perm.luxury',
                 },
                

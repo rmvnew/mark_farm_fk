@@ -1,6 +1,7 @@
 local display = false
 local startTime = nil -- Guarda o tempo inicial do farm em milissegundos
 local farmItems = {} -- Guarda os itens que serão farmados
+local farm_started = false
 
 -- Função para desenhar texto 3D
 function DrawText3D(x, y, z, text)
@@ -33,7 +34,7 @@ Citizen.CreateThread(function()
                 local x, y, z = table.unpack(org.coords)
                 local distance = #(playerCoords - vector3(x, y, z))
 
-                if distance < 4 then
+                if distance < 7 then
                     sleep = 0
                     -- DrawMarker(27, x, y, z - 0.9, 0, 0, 0, 0, 0, 0, 0.7, 0.7, 0.7, 255, 0, 0, 200, false, false, 2, false, nil, nil, false)
                     DrawMarker(27, x, y, z - 0.9,  0, 0, 0, 0, 0, 130.0, 1.0, 1.0, 1.0, 150, 0, 0, 255, 0, 0, 0, 1)
@@ -73,21 +74,23 @@ function SetDisplay(bool)
     })
 end
 
--- Fechar NUI e resetar tempo
-RegisterNUICallback("closeCurrentNUI", function(data, cb)
-    SetDisplay(false)
-    startTime = nil -- Reseta o tempo do farm
-    cb("ok")
-end)
-
 
 RegisterNUICallback("startFarm", function(data, cb)
-
     if data then
-        TriggerServerEvent("startFarm", data) 
+        farm_started = true
+        TriggerServerEvent("mark_fk:updateFarmStatus", true) -- Envia status para o servidor
     end
     cb("ok")
 end)
+
+RegisterNUICallback("closeCurrentNUI", function(data, cb)
+    SetDisplay(false)
+    farm_started = false
+    startTime = nil -- Reseta o tempo do farm
+    TriggerServerEvent("mark_fk:updateFarmStatus", false) -- Envia status para o servidor
+    cb("ok")
+end)
+
 
 -- Quando o tempo do farm acabar, validar no servidor antes de entregar itens
 RegisterNUICallback("checkFarmTime", function(data, cb)
@@ -96,4 +99,9 @@ RegisterNUICallback("checkFarmTime", function(data, cb)
         TriggerServerEvent("checkFarmTime", data, farmItems)
     end
     cb("ok")
+end)
+
+
+exports("farmStatus",function ()
+    return farm_started
 end)
