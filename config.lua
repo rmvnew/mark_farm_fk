@@ -213,7 +213,7 @@ Config.data = {
                 },
                 {
                     name = 'Camorra',
-                    coords = {  -803.19,  185.89,  72.61},
+                    coords = {-808.29,167.61,76.73},
                     permission = 'perm.camorra',
                 },
                 {

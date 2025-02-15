@@ -21,26 +21,6 @@ function DrawText3D(x, y, z, text)
     end
 end
 
--- Criar blips e markers para as facções
-Citizen.CreateThread(function()
-    for category, data in pairs(Config.data.orgType) do
-        for _, org in pairs(data.orgs) do
-            local x, y, z = table.unpack(org.coords)
-
-            -- Criar Blip
-            local blip = AddBlipForCoord(x, y, z)
-            SetBlipSprite(blip, 84)
-            SetBlipDisplay(blip, 4)
-            SetBlipScale(blip, 0.8)
-            SetBlipColour(blip, 1)
-            SetBlipAsShortRange(blip, true)
-            BeginTextCommandSetBlipName("STRING")
-            AddTextComponentString("Ponto de Farm - " .. org.name)
-            EndTextCommandSetBlipName(blip)
-        end
-    end
-end)
-
 -- Verificar proximidade e exibir o marker
 Citizen.CreateThread(function()
     while true do
@@ -53,22 +33,36 @@ Citizen.CreateThread(function()
                 local x, y, z = table.unpack(org.coords)
                 local distance = #(playerCoords - vector3(x, y, z))
 
-                if distance < 10 then
+                if distance < 4 then
                     sleep = 0
-                    DrawMarker(27, x, y, z - 0.9, 0, 0, 0, 0, 0, 0, 0.7, 0.7, 0.7, 255, 0, 0, 200, false, false, 2, false, nil, nil, false)
+                    -- DrawMarker(27, x, y, z - 0.9, 0, 0, 0, 0, 0, 0, 0.7, 0.7, 0.7, 255, 0, 0, 200, false, false, 2, false, nil, nil, false)
+                    DrawMarker(27, x, y, z - 0.9,  0, 0, 0, 0, 0, 130.0, 1.0, 1.0, 1.0, 150, 0, 0, 255, 0, 0, 0, 1)
                     DrawText3D(x, y, z, "[E] - Farm FK")
 
-                    if distance < 4 and IsControlJustPressed(0, 38) then -- Pressionou "E"
-                        startTime = GetGameTimer() -- Usa GetGameTimer() para armazenar o tempo
-                        farmItems = data.itensFarm -- Define os itens do farm conforme a facção
-                        SetDisplay(true) -- Abrir NUI
+                    if distance < 2 then
+
+                        ShowHelpText("Pressione ~INPUT_CONTEXT~ para abrir \no painel do FARM FK")
+                        if distance < 1.5 and IsControlJustPressed(0, 38) then -- Pressionou "E"
+                            startTime = GetGameTimer() -- Usa GetGameTimer() para armazenar o tempo
+                            farmItems = data.itensFarm -- Define os itens do farm conforme a facção
+                            SetDisplay(true) -- Abrir NUI
+                        end
+
                     end
+
                 end
             end
         end
         Citizen.Wait(sleep)
     end
 end)
+
+
+function ShowHelpText(text)
+    BeginTextCommandDisplayHelp("STRING")
+    AddTextComponentSubstringPlayerName(text)
+    EndTextCommandDisplayHelp(0, false, true, -1)
+end
 
 -- Mostrar ou esconder a NUI
 function SetDisplay(bool)
