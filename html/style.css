@@ -1,0 +1,95 @@
+/* Estilos globais e dark mode */
+body {
+    margin: 0;
+    padding: 0;
+    /* background-color: #121212; */
+    color: rgb(0, 0, 0);
+    -webkit-text-stroke: 1px rgb(255, 255, 255);
+    /* text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); */
+    /* font-weight: bold; */
+
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+
+}
+
+.container {
+    width: 100%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Painel centralizado com 500x500 */
+.panel {
+    width: 500px;
+    height: 450px;
+    /* background-color: #1e1e1e; */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px;
+    text-align: start;
+    font-size: 1.1rem;
+    background-image: url('assets/sleep.png');
+}
+
+/* Card no topo do painel */
+.card {
+    background-color: #2c2c2c;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    display: flex;
+    justify-content: space-around;
+
+}
+
+/* Estilização do input de exibição do tempo */
+.card input {
+    width: 40%;
+    padding: 10px;
+    font-size: 50px;
+    text-align: center;
+    background-color: #3a3a3a;
+    border: solid 3px #004600;
+    border-radius: 10px;
+    color: #fff;
+    box-shadow: rgba(0, 255, 0, 0.65) 1.95px 1.95px 2.6px;
+    z-index: 1;
+}
+
+/* Botão de iniciar */
+button {
+    padding: 10px 20px;
+    font-size: 18px;
+    background-color: #3a3a3a;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    box-shadow: rgba(0, 255, 0, 0.65) 1.95px 1.95px 2.6px;
+    z-index: 1;
+}
+
+button:hover {
+    background-color: #555;
+}
+
+button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+p {
+    font-size: 1.3rem;
+    text-align: justify;
+    margin-top: 50px;
+    color: #ffffff;
+}
