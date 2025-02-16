@@ -200,8 +200,9 @@ Config.data = {
         },
         ["Contrabando"] = {
             itensFarm = {
-                {item = 'c-fio'},
-                {item = 'polvora'},
+                -- {item = 'c-fio'},
+                -- {item = 'polvora'},
+                {item = 'kit_pirotecnico'},
                 {item = 'c-ferro'},
                 {item = 'pacote_tecido'},
             },

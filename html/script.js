@@ -1,5 +1,5 @@
 // Configuração do tempo inicial em minutos (modifique conforme necessário)
-let initialTimeInMinutes = 1; // Tempo inicial em minutos (altere conforme necessário)
+let initialTimeInMinutes = 30; // Tempo inicial em minutos (altere conforme necessário)
 let totalTimeInSeconds = initialTimeInMinutes * 60; // Tempo total em segundos
 let timerInterval = null; // Variável para armazenar o timer
 
