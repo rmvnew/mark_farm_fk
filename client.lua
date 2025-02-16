@@ -2,6 +2,7 @@ local display = false
 local startTime = nil -- Guarda o tempo inicial do farm em milissegundos
 local farmItems = {} -- Guarda os itens que serão farmados
 local farm_started = false
+local current_data = nil
 
 -- Função para desenhar texto 3D
 function DrawText3D(x, y, z, text)
@@ -44,9 +45,11 @@ Citizen.CreateThread(function()
 
                         ShowHelpText("Pressione ~INPUT_CONTEXT~ para abrir \no painel do FARM FK")
                         if distance < 1.5 and IsControlJustPressed(0, 38) then -- Pressionou "E"
-                            startTime = GetGameTimer() -- Usa GetGameTimer() para armazenar o tempo
-                            farmItems = data.itensFarm -- Define os itens do farm conforme a facção
-                            SetDisplay(true) -- Abrir NUI
+                            -- startTime = GetGameTimer() -- Usa GetGameTimer() para armazenar o tempo
+                            -- farmItems = data.itensFarm -- Define os itens do farm conforme a facção
+                            -- SetDisplay(true) -- Abrir NUI
+                            current_data = data.itensFarm
+                            TriggerServerEvent("mark_fk:checkpermission",org.permission)
                         end
 
                     end
@@ -58,6 +61,25 @@ Citizen.CreateThread(function()
     end
 end)
 
+
+RegisterNetEvent("mark_fk:autorized")
+AddEventHandler("mark_fk:autorized", function()
+
+        startTime = GetGameTimer() -- Usa GetGameTimer() para armazenar o tempo
+        SetDisplay(true) -- Abrir NUI
+
+end)
+
+
+
+RegisterNetEvent("mark_fk:notAutorized")
+AddEventHandler("mark_fk:notAutorized", function()
+
+    print("❌ Permissão negada!")
+    TriggerEvent("Notify", "negado", "Você não tem permissão para acessar esse blip!")
+    PlaySoundFrontend(-1, "ERROR", "HUD_FRONTEND_DEFAULT_SOUNDSET", true)
+    SetDisplay(false)
+end)
 
 function ShowHelpText(text)
     BeginTextCommandDisplayHelp("STRING")
@@ -75,18 +97,28 @@ function SetDisplay(bool)
 end
 
 
+
 RegisterNUICallback("startFarm", function(data, cb)
-    if data then
-        farm_started = true
-        TriggerServerEvent("mark_fk:updateFarmStatus", true) -- Envia status para o servidor
-    end
+    startTime = GetGameTimer() -- Obtém o tempo de início
+    farm_started = true -- Define que o farm foi iniciado
+    TriggerServerEvent("startFarm", startTime) -- Envia para o servidor iniciar a contagem
     cb("ok")
 end)
+
+
+-- RegisterNUICallback("startFarm", function(data, cb)
+--     if data then
+--         farm_started = true
+--         TriggerServerEvent("mark_fk:updateFarmStatus", true) -- Envia status para o servidor
+--     end
+--     cb("ok")
+-- end)
 
 RegisterNUICallback("closeCurrentNUI", function(data, cb)
     SetDisplay(false)
     farm_started = false
     startTime = nil -- Reseta o tempo do farm
+    current_data = nil
     TriggerServerEvent("mark_fk:updateFarmStatus", false) -- Envia status para o servidor
     cb("ok")
 end)
@@ -96,7 +128,7 @@ end)
 RegisterNUICallback("checkFarmTime", function(data, cb)
 
     if data then
-        TriggerServerEvent("checkFarmTime", data, farmItems)
+        TriggerServerEvent("checkFarmTime", data, current_data)
     end
     cb("ok")
 end)
