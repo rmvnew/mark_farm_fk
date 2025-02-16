@@ -132,6 +132,7 @@ vRPclient = Tunnel.getInterface("vRP")
 
 -- Tabela para armazenar o tempo inicial do farm de cada jogador
 local farmPlayers = {}
+local farm_started = false
 
 -- Verifica se o jogador tem permissão para farmar
 RegisterNetEvent("mark_fk:checkpermission")
@@ -314,6 +315,7 @@ AddEventHandler("mark_fk:updateFarmStatus", function(status)
     if user_id then
         farmPlayers[user_id] = farmPlayers[user_id] or {}
         farmPlayers[user_id].isActive = status
+        farm_started = status
     end
 end)
 
@@ -321,4 +323,12 @@ end)
 exports("farmStatus", function(source)
     local user_id = vRP.getUserId(source)
     return farmPlayers[user_id] and farmPlayers[user_id].isActive or false
+end)
+
+
+
+
+exports("farmStatus",function ()
+    print("Status: ",farm_started)
+    return farm_started
 end)

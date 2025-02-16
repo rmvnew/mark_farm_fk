@@ -1,7 +1,7 @@
 local display = false
 local startTime = nil -- Guarda o tempo inicial do farm em milissegundos
 local farmItems = {} -- Guarda os itens que serão farmados
-local farm_started = false
+-- local farm_started = false
 local current_data = nil
 
 -- Função para desenhar texto 3D
@@ -100,8 +100,9 @@ end
 
 RegisterNUICallback("startFarm", function(data, cb)
     startTime = GetGameTimer() -- Obtém o tempo de início
-    farm_started = true -- Define que o farm foi iniciado
-    TriggerServerEvent("startFarm", startTime) -- Envia para o servidor iniciar a contagem
+    -- farm_started = true -- Define que o farm foi iniciado
+    TriggerServerEvent("startFarm", startTime,true) -- Envia para o servidor iniciar a contagem
+    TriggerServerEvent("mark_fk:updateFarmStatus", true)
     cb("ok")
 end)
 
@@ -116,7 +117,7 @@ end)
 
 RegisterNUICallback("closeCurrentNUI", function(data, cb)
     SetDisplay(false)
-    farm_started = false
+    -- farm_started = false
     startTime = nil -- Reseta o tempo do farm
     current_data = nil
     TriggerServerEvent("mark_fk:updateFarmStatus", false) -- Envia status para o servidor
@@ -128,12 +129,14 @@ end)
 RegisterNUICallback("checkFarmTime", function(data, cb)
 
     if data then
+        -- farm_started = true
         TriggerServerEvent("checkFarmTime", data, current_data)
     end
     cb("ok")
 end)
 
 
-exports("farmStatus",function ()
-    return farm_started
-end)
+-- exports("farmStatus",function ()
+--     print("Status: ",farm_started)
+--     return farm_started
+-- end)
