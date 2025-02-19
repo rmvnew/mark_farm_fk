@@ -93,7 +93,7 @@ Config.data = {
                 },
                 {
                     name = 'Canada',
-                    coords = {-157.23,-1603.47,35.03},
+                    coords = {2520.91,4098.69,38.59},
                     permission = 'perm.canada',
                 },
                 {
@@ -178,7 +178,7 @@ Config.data = {
             orgs = {
                 {
                     name = 'Argentina',
-                    coords = {349.82,-2029.96,22.39},
+                    coords = {-1790.53,-209.1,70.21},
                     permission = 'perm.argentina',
                 },
                 
