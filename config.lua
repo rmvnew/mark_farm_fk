@@ -135,9 +135,9 @@ Config.data = {
             },
             orgs = {
                 {
-                    name = 'ThunderCustom',
+                    name = 'Bennys',
                     coords = {955.88,-1052.16,40.84},
-                    permission = 'perm.mecanica',
+                    permission = 'perm.bennys',
                 },
                 
             }
@@ -145,7 +145,8 @@ Config.data = {
         ["Hospital"] = {
             itensFarm = {
                 {item = 'fita_de_pano'},
-                {item = 'elastico'}
+                {item = 'elastico'},
+                {item = 'anestesico'},
             },
             orgs = {
                 {
